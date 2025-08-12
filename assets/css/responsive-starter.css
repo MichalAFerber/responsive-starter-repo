@@ -197,4 +197,9 @@ a.btn { text-decoration: none; display: inline-flex; align-items: center; gap: 0
   .table--stack td::before { content: attr(data-label); font-weight: 600; display: block; color: var(--muted); }
 }
 
+/* --- ICON RENDERING FIX --- */
+svg { display: inline-block; max-width: 100%; height: auto; }
+.icon { display: inline-flex; width: 1em; height: 1em; line-height: 1; }
+.icon svg { width: 1em; height: 1em; vertical-align: -0.125em; }
+
 /* End of starter */
