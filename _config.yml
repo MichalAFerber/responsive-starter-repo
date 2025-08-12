@@ -4,7 +4,7 @@ theme: null
 markdown: kramdown
 plugins: []
 url: "https://michalferber.me/responsive-starter-repo/"   # set your production URL e.g. https://USERNAME.github.io/REPO
-baseurl: ""  # set to /REPO if deploying to a project site
+baseurl: "/responsive-starter-repo"  # set to /REPO if deploying to a project site
 exclude:
   - .github
   - README.md
