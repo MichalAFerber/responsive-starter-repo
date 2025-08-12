@@ -8,7 +8,7 @@ description: Fluid type, mobile-first breakpoints, container queries, and image 
 
 <article class="grid">
   <div class="card container card--media-right" style="grid-column: span 12;">
-    <img src="/responsive-starter-repo/responsive-starter-repo/img/card-800.jpg" alt="Sample card image" width="800" height="533" class="responsive-media">
+    <img src="/responsive-starter-repo/img/card-800.jpg" alt="Sample card image" width="800" height="533" class="responsive-media">
     <div class="flow">
       <h2 style="font-size:var(--step-2);margin:0">Adaptive Card using Container Queries</h2>
       <p>This card switches to a two-column layout when its own container is wide enough.</p>
