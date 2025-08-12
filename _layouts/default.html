@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/responsive-starter.min.css' | relative_url }}">
+</head>
+<body>
+  {% include svg-sprite.html %}
+  <header class="wrapper flow" style="padding-block: var(--space-2)">
+    <nav class="cluster" aria-label="Primary">
+      <a class="btn" href="{{ '/' | relative_url }}">
+        <span class="icon" aria-hidden="true"><svg><use href="#icon-check"/></svg></span>Home
+      </a>
+      <a class="btn" href="https://michalferber.me">
+        <span class="icon" aria-hidden="true"><svg><use href="#icon-alert"/></svg></span>Blog
+      </a>
+    </nav>
+    <h1 style="font-size:var(--step-4);margin:0">{{ page.title | default: site.title }}</h1>
+    {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
+  </header>
+
+  <main class="wrapper flow" style="padding-block: var(--space-3)">
+    {{ content }}
+  </main>
+
+  <footer class="wrapper" style="padding-block: var(--space-2); color: var(--muted)">
+    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}.</p>
+  </footer>
+</body>
+</html>

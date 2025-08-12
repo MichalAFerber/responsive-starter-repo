@@ -1,0 +1,200 @@
+/*
+  Responsive + Image Optimization Starter CSS (2025)
+  --------------------------------------------------
+  Drop-in stylesheet that gives you:
+  - Fluid type/spacing with clamp()
+  - Mobile-first media queries
+  - Container queries (progressive enhancement)
+  - Accessible reduced-motion fallbacks
+  - Dark-mode support
+  - Helpers for <img>, <picture>, responsive backgrounds, and SVG icons
+
+  Usage:
+    <link rel="stylesheet" href="/css/responsive-starter.css">
+*/
+
+/* 1) Design tokens */
+:root {
+  /* Typography scale */
+  --step--2: clamp(0.70rem, 0.70rem + 0.10vw, 0.78rem);
+  --step--1: clamp(0.85rem, 0.84rem + 0.20vw, 0.96rem);
+  --step-0 : clamp(1.00rem, 0.98rem + 0.30vw, 1.13rem);
+  --step-1 : clamp(1.15rem, 1.14rem + 0.40vw, 1.35rem);
+  --step-2 : clamp(1.33rem, 1.30rem + 0.60vw, 1.62rem);
+  --step-3 : clamp(1.60rem, 1.55rem + 0.80vw, 1.96rem);
+  --step-4 : clamp(1.92rem, 1.86rem + 1.00vw, 2.35rem);
+
+  /* Layout scale */
+  --space-1: clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem);
+  --space-2: clamp(1.0rem, 0.8rem + 0.8vw, 1.5rem);
+  --space-3: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --space-4: clamp(2.0rem, 1.6rem + 1.6vw, 3.0rem);
+
+  /* Color */
+  --bg: #0b0c0f;
+  --fg: #e8e8ea;
+  --muted: #a0a3a8;
+  --brand: #6ea8fe;
+
+  /* Content width */
+  --content: 68rem; /* ~1088px */
+}
+
+/* Dark mode auto */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --fg: #121416;
+    --muted: #4b5563;
+    --brand: #2563eb;
+  }
+}
+
+/* Base */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { hanging-punctuation: first last; }
+
+body {
+  margin: 0;
+  font: 400 var(--step-0)/1.55 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+img, svg, video, canvas { display: block; max-width: 100%; }
+
+/* 2) Container + fluid layout helpers */
+.wrapper {
+  width: min(100% - 2rem, var(--content));
+  margin-inline: auto;
+}
+
+.stack > * + * { margin-block-start: var(--space-2); }
+.cluster { display: flex; flex-wrap: wrap; gap: var(--space-1); align-items: center; }
+
+.grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+/* 3) Media query breakpoints (mobile-first) */
+@media (min-width: 37.5rem) {   /* 600px - tablet */
+  :root { --content: 72rem; }
+}
+@media (min-width: 56.25rem) {  /* 900px - small laptop */
+  :root { --content: 76rem; }
+}
+@media (min-width: 75rem) {     /* 1200px - desktop */
+  :root { --content: 82rem; }
+}
+
+/* 4) Container queries (progressive) */
+.container {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (min-width: 28rem) { /* ~448px container */
+  .card--media-right { grid-auto-flow: column; grid-auto-columns: 1fr 1fr; }
+}
+
+/* 5) Responsive media helpers */
+.responsive-media { max-width: 100%; height: auto; }
+
+/* Picture + sizes utility (example) */
+.responsive-img {
+  width: 100%;
+  height: auto;
+}
+
+/* Background image helper with image-set() (serve 1x/2x) */
+.bg-cover {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Example:
+.hero {
+  min-height: 60vh;
+  background-image: image-set(
+    url("/images/hero-mobile.webp") 1x,
+    url("/images/hero-mobile@2x.webp") 2x
+  );
+}
+@media (min-width: 48rem) {
+  .hero {
+    background-image: image-set(
+      url("/images/hero-desktop.webp") 1x,
+      url("/images/hero-desktop@2x.webp") 2x
+    );
+  }
+}
+*/
+
+/* 6) Reduced motion + prefers-contrast */
+@media (prefers-reduced-motion: reduce) {
+  :root { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* 7) Utility classes */
+.flow > * + * { margin-block-start: var(--space-1); }
+.center { margin-inline: auto; }
+.hidden { display: none !important; }
+.visually-hidden { 
+  position: absolute !important; 
+  width: 1px; height: 1px; 
+  padding: 0; margin: -1px; overflow: hidden; 
+  clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0;
+}
+
+/* 8) SVG-friendly defaults */
+svg { height: auto; }
+.icon { inline-size: 1em; block-size: 1em; fill: currentColor; }
+
+/* 9) Example card pattern ready for container queries */
+.card {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--fg) 8%, var(--bg));
+  box-shadow: 0 0.25rem 1.25rem rgb(0 0 0 / 0.12);
+}
+.card img { border-radius: 0.75rem; }
+
+/* 10) Forms + buttons basics */
+button, .btn {
+  font: inherit;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.6em 1em;
+  background: var(--brand);
+  color: white;
+  cursor: pointer;
+}
+a.btn { text-decoration: none; display: inline-flex; align-items: center; gap: 0.5em; }
+
+/* 11) Example responsive table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table th, .table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 15%, var(--bg));
+}
+.table--stack th { text-align: left; }
+@media (max-width: 40rem) {
+  .table--stack thead { display: none; }
+  .table--stack tr { display: grid; gap: 0.25rem; padding: 0.6rem 0; }
+  .table--stack td::before { content: attr(data-label); font-weight: 600; display: block; color: var(--muted); }
+}
+
+/* End of starter */

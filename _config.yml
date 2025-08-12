@@ -1,0 +1,13 @@
+title: Responsive Starter
+description: Minimal responsive + image optimization starter (2025)
+theme: null
+markdown: kramdown
+plugins: []
+url: ""   # set your production URL e.g. https://USERNAME.github.io/REPO
+baseurl: ""  # set to /REPO if deploying to a project site
+exclude:
+  - .github
+  - README.md
+  - node_modules
+sass:
+  style: compressed
