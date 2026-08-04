@@ -3,8 +3,8 @@ description: Minimal responsive + image optimization starter (2025)
 theme: null
 markdown: kramdown
 plugins: []
-url: "https://michalferber.me/"   # set your production URL e.g. https://USERNAME.github.io/REPO
-baseurl: ""  # set to /REPO if deploying to a project site
+url: "https://michalaferber.github.io"
+baseurl: "/responsive-starter-repo"
 exclude:
   - .github
   - README.md
